@@ -35,26 +35,26 @@
 
 ### 2.2.5
 
-* The new project wizard now lets you configure a [fabric8.yml file](https://github.com/fabric8io/fabric8/issues/4086) like this [example](https://github.com/fabric8io/fabric8/blob/master/components/fabric8-devops/src/test/resources/fabric8.yml) for configuring the devops side of a project such as the chat room and issue tracker for a project and whether code review is enabled. Over time when we move to the [Jenkins Docker Workflow](https://github.com/fabric8io/fabric8/issues/4286) for builds; we'll be able to use configured the flow too.
+* 增加了新的项目向导，现在你可以像这个[示例](https://github.com/fabric8io/fabric8/blob/master/components/fabric8-devops/src/test/resources/fabric8.yml)一样配置 [fabric8.yml 文件](https://github.com/fabric8io/fabric8/issues/4086)，进行项目的 DevOps 设定，比如聊天室，项目问题追踪系统，是否需要代码评审等方面。当我们迁移到 [Jenkins Docker 工作流](https://github.com/fabric8io/fabric8/issues/4286)进行构建之后，我们也能够使用这个配置好的工作流
 * 修复了[13个问题](https://github.com/fabric8io/fabric8/issues?q=milestone%3A2.2.5)
 
 ### 2.2.3
 
-* The [Metrics](http://fabric8.io/guide/metrics.html) and [Logging](http://fabric8.io/guide/chat.html) now work out of the box if you run them by pressing the `Run...` button on the `Apps` tab in the [console](http://fabric8.io/guide/console.html) when using the [vagrant image](http://fabric8.io/guide/getStartedVagrant.html) 
-* The [Chat](http://fabric8.io/guide/chat.html) now works out of the box without having to manually figure out rooms and tokens and pass them on the command line so that Hubot can connect to Let's Chat
+* 当使用 [vagrant 镜像](http://fabric8.io/guide/getStartedVagrant.html)时，你可以通过按下[控制台](http://fabric8.io/guide/console.html)的 `Apps` 选项卡的 `Run...` 按钮，来直接运行 [Metrics](http://fabric8.io/guide/metrics.html) 和 [Logging](http://fabric8.io/guide/chat.html)    
+* [聊天](http://fabric8.io/guide/chat.html)现在可以直接使用，而无需手动配置聊天室和凭证以及将它们传递给命令行以使 Hubot 可以连接到 Let's Chat
 * 修复了[3个问题](https://github.com/fabric8io/fabric8/issues?q=milestone%3A2.2.3)
 
 ### 2.2.2
 
-* New getting started guide based on a new easier to use [vagrant image](http://fabric8.io/guide/getStartedVagrant.html)
-* The vagrant domain is now `vagrant.f8` getting ready for DNS support inside the vagrant image
-* You can now easily run the [fabric8 apps](http://fabric8.io/guide/fabric8Apps.html) from the `Run...` button on the [console](http://fabric8.io/guide/console.html) 
+* 增加了基于新的更易使用的[vagrant 镜像](http://fabric8.io/guide/getStartedVagrant.html)的入门指南 
+* vagrant 域名现在为 `vagrant.f8`，在 vagrant 镜像内部为支持 DNS 做好准备
+* 你现在可以容易地从[控制台](http://fabric8.io/guide/console.html)的 `Run...` 按钮运行 [fabric8 应用](http://fabric8.io/guide/fabric8Apps.html) 
 * 修复了[39个问题](https://github.com/fabric8io/fabric8/issues?q=milestone%3A2.2.2)
 
 ### 2.2.0
 
-* Updates to the `v1` schema version in kubernetes
-* The [fabric8 vagrant image](http://fabric8.io/guide/openShiftWithFabric8Vagrant.html) has moved into the [fabric8-installer](https://github.com/fabric8io/fabric8-installer/tree/master/vagrant/openshift-latest) repository
+* 更新到 kubernetes schema `v1` 版本 
+* [fabric8 vagrant 镜像](http://fabric8.io/guide/openShiftWithFabric8Vagrant.html)被移动到 [fabric8-installer](https://github.com/fabric8io/fabric8-installer/tree/master/vagrant/openshift-latest) 仓库
 * 修复了[15个问题](https://github.com/fabric8io/fabric8/issues?q=milestone%3A2.2.0)
 
 ### 2.1.11
@@ -71,14 +71,14 @@
 
 ### 2.1.1 
 
-* Improved [user guide](http://fabric8.io/guide/) which is hopefully more clear along with instructions on how to [Install Fabric8 on OpenShift V3](http://fabric8.io/guide/fabric8OnOpenShift.html) 
-* migrates to the v1beta3 version of the Kubernetes schema by default including much better validation
-* [Fabric8 Apps](http://fabric8.io/guide/fabric8Apps.html) are now easier to [install on an existing Kubernetes or OpenShift environment](http://fabric8.io/guide/fabric8OnOpenShift.html) via a [OpenShift templates](http://docs.openshift.org/latest/dev_guide/templates.html) JSON file.
-* Maven [fabric8:json](http://fabric8.io/guide/mavenFabric8Json.html) goal now supports the generation of [OpenShift templates](http://docs.openshift.org/latest/dev_guide/templates.html)
-* Maven [fabric8:apply](http://fabric8.io/guide/mavenFabric8Apply.html) goal is the new name of the old `fabric8:run` goal to better describe applying JSON to a kubernetes environment and creating/updating/deleting resources.
-* New maven [fabric8:create-routes](http://fabric8.io/guide/mavenFabric8CreateRoutes.html) to lazily create any missing [OpenShift Routes](http://docs.openshift.org/latest/admin_guide/router.html)
-* The [fabric8 console](http://fabric8.io/guide/console.html) is now more reactive thanks to the support of websockets for real time updates
-* First spike of [Fabric8 Continuous Delivery](http://fabric8.io/guide/cdelivery.html) making it easier to build, release and provision software faster and more reliably
+* 改善了[用户指南](http://fabric8.io/guide/)， 使如何[在 OpenShift V3 上安装 Fabric8](http://fabric8.io/guide/fabric8OnOpenShift.html) 的指令更加明了
+* 迁移到默认包含许多更好的验证功能的 v1beta3 版本的 Kubernetes schema 上
+* [Fabric8 应用](http://fabric8.io/guide/fabric8Apps.html)现在通过使用 [OpenShift 模板](http://docs.openshift.org/latest/dev_guide/templates.html) JSON 文件，能够更容易被[安装到既有 Kubernetes 或者 OpenShift 环境上](http://fabric8.io/guide/fabric8OnOpenShift.html)
+* Maven [fabric8:json](http://fabric8.io/guide/mavenFabric8Json.html) 目标现在支持生成 [OpenShift 模板](http://docs.openshift.org/latest/dev_guide/templates.html)
+* Maven [fabric8:apply](http://fabric8.io/guide/mavenFabric8Apply.html) 目标为旧有 `fabric8:run` 目标的新名称，以便更好的描述适用 JSON 到 kubernetes 环境以及创建/更新/删除资源的用途
+* 增加了新的 maven [fabric8:create-routes](http://fabric8.io/guide/mavenFabric8CreateRoutes.html) 来延迟创建任何缺失的 [OpenShift 路由](http://docs.openshift.org/latest/admin_guide/router.html)
+* 由于 websockets 实时更新的支持，[fabric8 控制台](http://fabric8.io/guide/console.html)更加反应灵敏
+* 首个 [Fabric8 持续交付](http://fabric8.io/guide/cdelivery.html)发布使得构建更加容易，发布和配置软件更加快速及可靠
 * 修复了[49个问题](https://github.com/fabric8io/fabric8/issues?q=milestone%3A2.1.1)
 
 ### 2.0.44
