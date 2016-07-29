@@ -42,9 +42,9 @@ Fabric8 GitHub仓库的完整列表请浏览 [docs/projects.md](docs/projects.md
 
 ### 给项目贡献代码
 
-我们热爱 [贡献](Contributing.md) ，欢迎您的帮助。
+我们热爱[贡献](Contributing.md) ，欢迎你的帮助。
 
-查看 [社区](http://fabric8.io/community/index.html)
+查看[社区](http://fabric8.io/community/index.html)
 
 ### 授权
 
