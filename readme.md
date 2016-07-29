@@ -10,43 +10,43 @@ fabric8
   </a>
 </p>
 
-<b>fabric8</b> is an opinionated open source <b>microservices platform</b> based on <a href="http://docker.com/">Docker</a>, <a href="http://kubernetes.io/">Kubernetes</a> and <a href="https://jenkins.io/">Jenkins</a>
+<b>fabric8</b> 是一个基于 <a href="http://docker.com/">Docker</a>， <a href="http://kubernetes.io/">Kubernetes</a> 和 <a href="https://jenkins.io/">Jenkins</a> 的有态度的开源微服务平台。
 
-<b>fabric8</b> makes it easy to create microservices, build, test and deploy them via <a href="http://fabric8.io/guide/cdelivery.html">Continuous Delivery pipelines</a> then <a href="http://fabric8.io/guide/fabric8DevOps.html">run and manage them</a> with Continuous Improvement and <a href="http://fabric8.io/guide/chat.html">ChatOps</a>
+<b>fabric8</b> 通过提供 <a href="http://fabric8.io/guide/cdelivery.html">持续交付流水线</a>， 以及支持持续改善和 <a href="http://fabric8.io/guide/chat.html">聊天运维</a> 的<a href="http://fabric8.io/guide/fabric8DevOps.html">开发运维一体化能力</a> ，使得微服务的创建，构建，测试和部署更加容易。
 
-### Documentation
+### 文档
 
-* [Overview](http://fabric8.io/guide/overview.html)
-* [Blog](http://blog.fabric8.io/)
-* [Differences in 2.x from 1.x](http://fabric8.io/guide/v2-changes.html)
+* [概述](http://fabric8.io/guide/overview.html)
+* [博客](http://blog.fabric8.io/)
+* [1.x和2.x的区别](http://fabric8.io/guide/v2-changes.html)
 
-### Demos
+### 演示
 
-* [Using the fabric8 developer console](https://vimeo.com/125255595)
-* [Creating a project](https://vimeo.com/125066673)
-* [More videos](https://vimeo.com/album/2635012)
+* [使用fabric8开发者控制台](https://vimeo.com/125255595)
+* [创建项目](https://vimeo.com/125066673)
+* [更多视频](https://vimeo.com/album/2635012)
 
-### Getting Started
+### 入门指南
 
-* [Getting Started guides](http://fabric8.io/guide/getStarted.html)
+* [入门指南](http://fabric8.io/guide/getStarted.html)
 
-### Source code
+### 源代码
 
-Fabric8 is made up of a number of different git repositories including this one.
+Fabric8 是由包括这个Git仓库在内的多个不同Git仓库构成的。
 
-Please see the [docs/projects.md](docs/projects.md) file for a full list of all the github repositories.
+Fabric8 GitHub仓库的完整列表请浏览 [docs/projects.md](docs/projects.md) 文件。
 
-### Building the code
+### 构建代码
 
-Please see the [building.md](building.md) file.
+请浏览 [building.md](building.md) 文件。
 
-### Contributing to the project
+### 给项目贡献代码
 
-We love [contributions](Contributing.md) and you are very welcome to help.
+我们热爱 [贡献](Contributing.md) ，欢迎您的帮助。
 
-Check out the [Community](http://fabric8.io/community/index.html)
+查看 [社区](http://fabric8.io/community/index.html)
 
-### License
+### 授权
 
-This project is [Apache Licensed](license.txt)
+本项目采用 [Apache 授权](license.txt)
 
