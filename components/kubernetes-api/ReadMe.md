@@ -3,11 +3,11 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.fabric8/kubernetes-api/badge.svg?style=flat-square)](https://maven-badges.herokuapp.com/maven-central/io.fabric8/kubernetes-api/)
 [![Javadocs](http://www.javadoc.io/badge/io.fabric8/kubernetes-api.svg?color=blue)](http://www.javadoc.io/doc/io.fabric8/kubernetes-api)
 
-This library represents a Java [Kubernetes](http://kubernetes.io/) client API using JAXRS 2.0.
+这个类库使用 JAXRS 2.0 提供一个 Java [Kubernetes](http://kubernetes.io/) 客户端 API。
 
-### Add it to your Maven pom.xml
+### 将它添加到你的 Maven pom.xml
 
-To be able to use the Java code in your [Apache Maven](http://maven.apache.org/) based project add this into your pom.xml
+为了能够在你的基于 [Apache Maven](http://maven.apache.org/) 项目中使用这个 Java 类库，请将以下定义添加到你的 pom.xml 文件中
 
             <dependency>
                 <groupId>io.fabric8</groupId>
@@ -15,25 +15,25 @@ To be able to use the Java code in your [Apache Maven](http://maven.apache.org/)
                 <version>2.2.101</version>
             </dependency>
 
-### Try an example
+### 试例
 
-If you clone the source code:
+如果你复制源代码:
 
     git clone https://github.com/fabric8io/fabric8.git
     cd fabric8
 
-And if you are running Kubernetes (e.g. [try run fabric8](http://fabric8.io/guide/getStarted.html)) so that $KUBERNETES_MASTER is pointing to the Kubernetes REST API then the following should work:
+并且如果你正在运行 Kubernetes (比如[试运行 fabric8](http://fabric8.io/guide/getStarted.html))，以使 $KUBERNETES_MASTER 指向 Kubernetes REST API，那么以下应该正常工作:
 
     cd components/kubernetes-api
     mvn clean test-compile exec:java
 
-The Example program should start and list some pods.
+这个示例程序应该正常启动并且列出一些 Kubernetes Pods。
 
-### API Overview
+### API 概述
 
-You use the **DefaultKubernetesClient** to create an instance of [Kubernetes Client](https://github.com/fabric8io/kubernetes-client) which supports the [Kubernetes REST API](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/DESIGN.md#kubernetes-api-server)
+你使用 **DefaultKubernetesClient** 去创建 [Kubernetes Client](https://github.com/fabric8io/kubernetes-client) 的一个实例，它支持 [Kubernetes REST API](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/DESIGN.md#kubernetes-api-server)。
 
-For example:
+样例:
 
     KubernetesClient kube = new DefaultKubernetesClient();
     PodList pods = kube.pods().list();
@@ -42,40 +42,40 @@ For example:
         String ip = pod.getStatus().getPodIP();
     }
 
-The **KubernetesClient** defaults to using the **KUBERNETES_MASTER** environment variable.
+**KubernetesClient** 默认使用 **KUBERNETES_MASTER** 环境变量。
 
-If your Java code is running inside of a Kubernetes environment the KubernetesClient will default to using **kubernetes.default.svc** (override by setting **KUBERNETES_MASTER**) as the address to communicate with the [kubernetes service](http://fabric8.io/guide/services.html) for the REST API.
+如果你的 Java 代码是运行在 Kubernetes 环境中的话， KubernetesClient 会默认使用 **kubernetes.default.svc** （被 **KUBERNETES_MASTER** 设定覆盖） 作为和[kubernetes 服务](http://fabric8.io/guide/services.html) REST API 通信的地址。
 
-If you wish to use a specific URL in your Java code just pass it into the factory constructor (though usually you don't need to!).
+如果你希望在你的 Java 代码中使用特定的 URL，你只需将它传给工厂构造体函数即可。（虽然通常你不需要这么做）
 
     KubernetesClient kube = new DefaultKubernetesClient("http://localhost:8585/");
     PodList pods = kube.pods().list();
 
-To see more of the Kubernetes API in action using the [Kubernetes Client](https://github.com/fabric8io/kubernetes-client) see [this example](https://github.com/fabric8io/fabric8/blob/master/components/kubernetes-api/src/test/java/io/fabric8/kubernetes/api/Example.java#L48)
+想看更多的使用 [Kubernetes Client](https://github.com/fabric8io/kubernetes-client) 访问 Kubernetes API 的信息，可以看一下[这个示例](https://github.com/fabric8io/fabric8/blob/master/components/kubernetes-api/src/test/java/io/fabric8/kubernetes/api/Example.java#L48)。
 
-### Configuration
+### 配置
 
-All configuration is done via the following environment variables:
+所有配置都通过以下环境变量:
 
-* `KUBERNETES_MASTER` - the location of the kubernetes master
-* `KUBERNETES_NAMESPACE` - the default namespace used on operations
-* `KUBERNETES_CERTS_CA_DATA` - the full Kubernetes CA certificate as a string (only this or `KUBERNETES_CERTS_CA_FILE` should be specified)
-* `KUBERNETES_CERTS_CA_FILE` - the path to the Kubernetes CA certificate file (only this or `KUBERNETES_CERTS_CA_DATA` should be specified)
-* `KUBERNETES_CERTS_CLIENT_DATA` - the full Kubernetes client certificate as a string (only this or `KUBERNETES_CERTS_CLIENT_FILE` should be specified)
-* `KUBERNETES_CERTS_CLIENT_FILE` - the path to the Kubernetes client certificate file (only this or `KUBERNETES_CERTS_CLIENT_DATA` should be specified)
-* `KUBERNETES_CERTS_CLIENT_KEY_DATA` - the full Kubernetes client private key as a string (only this or `KUBERNETES_CERTS_CLIENT_KEY_FILE` should be specified)
-* `KUBERNETES_CERTS_CLIENT_KEY_FILE` - the path to the Kubernetes client private key file (only this or `KUBERNETES_CERTS_CLIENT_KEY_DATA` should be specified)
-* `KUBERNETES_TRUST_CERTIFICATES` - whether to trust the Kubernetes server certificate (this is insecure so please try to configure certificates properly via the other environment variables if at all possible)
+* `KUBERNETES_MASTER` - Kubernetes Master 的位置 
+* `KUBERNETES_NAMESPACE` - 操作中使用的默认 Kubernetes 命名空间
+* `KUBERNETES_CERTS_CA_DATA` - 完整的 Kubernetes CA 证书字符串 （`KUBERNETES_CERTS_CA_DATA` 和 `KUBERNETES_CERTS_CA_FILE` 只应指定一个)
+* `KUBERNETES_CERTS_CA_FILE` - Kubernetes CA 证书文件路径（`KUBERNETES_CERTS_CA_DATA` 和 `KUBERNETES_CERTS_CA_FILE` 只应指定一个)
+* `KUBERNETES_CERTS_CLIENT_DATA` - 完整的 Kubernetes 客户端证书字符串（`KUBERNETES_CERTS_CLIENT_DATA` 和 `KUBERNETES_CERTS_CLIENT_FILE` 只应指定一个）
+* `KUBERNETES_CERTS_CLIENT_FILE` - Kubernetes 客户端证书文件路径（`KUBERNETES_CERTS_CLIENT_DATA` 和 `KUBERNETES_CERTS_CLIENT_FILE` 只应指定一个）
+* `KUBERNETES_CERTS_CLIENT_KEY_DATA` - 完整的 Kubernetes 客户端私钥字符串（`KUBERNETES_CERTS_CLIENT_KEY_DATA` 和 `KUBERNETES_CERTS_CLIENT_KEY_FILE` 只应指定一个）
+* `KUBERNETES_CERTS_CLIENT_KEY_FILE` - Kubernetes 客户端私钥文件路径（`KUBERNETES_CERTS_CLIENT_KEY_DATA` 和 `KUBERNETES_CERTS_CLIENT_KEY_FILE` 只应指定一个）
+* `KUBERNETES_TRUST_CERTIFICATES` - 是否信任 Kubernetes 服务器证书（由于不是安全的方式，如果有可能请尽量使用其他环境变量适当地配置证书）
 
-The `*_DATA` variants take precedence over the `*_FILE` variants.
+`*_DATA` 变量优先于 `*_FILE` 变量。
 
-#### Defaults from OpenShift
+#### OpenShift 默认值
 
-If no configuration is supplied through explicit code or environment variables, the `kubernetes-api` library will try to find the current login token and namespace by parsing the users `~/.kube/config` file.
+如果没有通过明示的代码或者环境变量进行配置，`kubernetes-api` 类库会尝试解析用户的 `~/.kube/config` 文件来找到当前登录凭证和命名空间。
 
-This means that if you use the [OpenShift](http://www.openshift.org/) command line tool `oc` you can login and change projects (namespaces in kubernetes speak) and those will be used by default by the `kubernetes-api` library.
+这意味着，如果你使用 [OpenShift](http://www.openshift.org/) 命令行工具 `oc`，你能够登录和切换项目（也即 Kubernetes 的命名空间）， `kubernetes-api` 类库会默认使用这些信息。
 
-e.g.
+比如
 
 ```
 oc login
@@ -83,4 +83,4 @@ oc project cheese
 mvn fabric8:apply
 ```
 
-In the above, if there is no `KUBERNETES_NAMESPACE` environment variable or maven property called `fabric8.apply.namespace` then the `fabric8:apply` goal will apply the Kubernetes resources to the `cheese` namespace.
+上例中，如果当前环境中没有 `KUBERNETES_NAMESPACE` 环境变量，或者叫做 `fabric8.apply.namespace` 的 Maven 属性，`fabric8:apply` 目标会将 Kubernetes 资源运用到 `cheese` 命名空间。
