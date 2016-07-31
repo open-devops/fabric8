@@ -44,7 +44,7 @@
 
 **KubernetesClient** 默认使用 **KUBERNETES_MASTER** 环境变量。
 
-如果你的 Java 代码是运行在 Kubernetes 环境中的话， KubernetesClient 会默认使用 **kubernetes.default.svc** （被 **KUBERNETES_MASTER** 设定覆盖） 作为和[kubernetes 服务](http://fabric8.io/guide/services.html) REST API 通信的地址。
+如果你的 Java 代码是运行在 Kubernetes 环境中的话， KubernetesClient 会默认使用 **kubernetes.default.svc** （被 **KUBERNETES_MASTER** 设定覆盖） 作为和 [kubernetes 服务](http://fabric8.io/guide/services.html) REST API 通信的地址。
 
 如果你希望在你的 Java 代码中使用特定的 URL，你只需将它传给工厂构造体函数即可。（虽然通常你不需要这么做）
 
@@ -65,7 +65,7 @@
 * `KUBERNETES_CERTS_CLIENT_FILE` - Kubernetes 客户端证书文件路径（`KUBERNETES_CERTS_CLIENT_DATA` 和 `KUBERNETES_CERTS_CLIENT_FILE` 只应指定一个）
 * `KUBERNETES_CERTS_CLIENT_KEY_DATA` - 完整的 Kubernetes 客户端私钥字符串（`KUBERNETES_CERTS_CLIENT_KEY_DATA` 和 `KUBERNETES_CERTS_CLIENT_KEY_FILE` 只应指定一个）
 * `KUBERNETES_CERTS_CLIENT_KEY_FILE` - Kubernetes 客户端私钥文件路径（`KUBERNETES_CERTS_CLIENT_KEY_DATA` 和 `KUBERNETES_CERTS_CLIENT_KEY_FILE` 只应指定一个）
-* `KUBERNETES_TRUST_CERTIFICATES` - 是否信任 Kubernetes 服务器证书（由于不是安全的方式，如果有可能请尽量使用其他环境变量适当地配置证书）
+* `KUBERNETES_TRUST_CERTIFICATES` - 是否信任 Kubernetes 服务器证书（由于不是安全的方式，如果有可能应尽量使用其他环境变量适当地配置证书）
 
 `*_DATA` 变量优先于 `*_FILE` 变量。
 
