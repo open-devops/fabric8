@@ -2,7 +2,7 @@
 
 <b>fabric8</b> 是一个基于 <a href="http://docker.com/">Docker</a>, <a href="http://kubernetes.io/">Kubernetes</a> 和 <a href="https://jenkins.io/">Jenkins</a> 的有态度的开源[微服务平台](fabric8DevOps.html)。
 
-<b>fabric8</b> 通过提供 <a href="http://fabric8.io/guide/cdelivery.html">持续交付流水线</a>， 以及支持持续改善和 <a href="http://fabric8.io/guide/chat.html">聊天运维</a> 的<a href="http://fabric8.io/guide/fabric8DevOps.html">开发运维一体化能力</a> ，使得微服务的创建，构建，测试和部署更加容易。
+<b>fabric8</b> 通过提供<a href="http://fabric8.io/guide/cdelivery.html">持续交付流水线</a>， 以及支持持续改善和<a href="http://fabric8.io/guide/chat.html">聊天运维</a>的<a href="http://fabric8.io/guide/fabric8DevOps.html">开发运维一体化能力</a> ，使得微服务的创建，构建，测试和部署更加容易。
 
 [Fabric8 微服务平台](fabric8DevOps.html)提供:
 
