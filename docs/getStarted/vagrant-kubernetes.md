@@ -1,8 +1,8 @@
 ## 使用 Kubernetes 的 Fabric8 Vagrant 镜像 
 
-This is the fastest way to get going with Fabric8 and Kubernetes on your laptop.
+这是在你的机器上安装 Fabric8 和 Kubernetes 的最快的方式。
 
- ### How to vagrant up
+ ### 如何 vagrant up
 
  * 下载并安装 [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
  * 下载并安装 [Vagrant](http://www.vagrantup.com/downloads.html)
