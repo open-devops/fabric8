@@ -1,117 +1,89 @@
-## Fabric8 Vagrant Image for Kubernetes
+## 使用 Kubernetes 的 Fabric8 Vagrant 镜像 
 
 This is the fastest way to get going with Fabric8 and Kubernetes on your laptop.
 
  ### How to vagrant up
 
- * Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
- * Download and install [Vagrant](http://www.vagrantup.com/downloads.html)
+ * 下载并安装 [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+ * 下载并安装 [Vagrant](http://www.vagrantup.com/downloads.html)
 
- Now clone the
- [fabric8 installer git repository](https://github.com/fabric8io/fabric8-installer)
- repository and type these commands:
+ 现在复制
+ [fabric8 安装程序 的 git 仓库](https://github.com/fabric8io/fabric8-installer)
+ 并执行以下命令:
 
  ```sh
  $ git clone https://github.com/fabric8io/fabric8-installer.git
  $ cd fabric8-installer/vagrant/kubernetes
  ```
 
- Depending on your host operating system you need to install an
- additional vagrant plugin:
+ 取决于你的宿主机操作系统，你需要安装一个额外的 Vagrant 插件:
 
- * `vagrant plugin install landrush` for Linux and OS X
- * `vagrant plugin install vagrant-hostmanager` for Windows
+ * Linux 和 OS X： `vagrant plugin install landrush` 
+ * Windows： `vagrant plugin install vagrant-hostmanager` 
 
-
- Now startup the Vagrant VM.
+ 现在启动 Vagrant 虚拟机。
 
  ```sh
  vagrant up
  ```
 
- Note the vagrant image is by default configured with 2 CPU cores and
- 4 gigs of memory. It is recommended to not exceed about half of your
- machine’s resources. In case you have plenty of resources on your
- machine you can increase the settings by editing the
- `Vagrantfile`. The settings are defined in the bottom of the file:
+Vagrant 镜像默认配置为 2 CPU 内核及 4G 内存。 通常建议不要超过你机器资源的一半，当你的机器上有足够的资源时，你可以编辑 `Vagrantfile` 文件来增加设定值。这个设定定义在文件的底部：
 
  ```ruby
  v.cpus = 2
  ```
 
- To update the RAM you can use an environment variable. For example to run the `cd-pipeline` application we recommend about 8Gb of RAM:
-
+ 变更虚拟机的内存使用量时，你可以使用环境变量。比如运行 `cd-pipeline` 应用程序时，我们推荐使用 8G 内存：
  ```
  export FABRIC8_VM_MEMORY=8192
  ```
 
- Then follow the on screen instructions.
+ 接下来按照屏幕上的指示
 
- * You should now have a running vagrant image running at IP address
-   `172.28.128.80` or at `vagrant.k8s`
- * Downloading the docker images may take a few minutes so you might
-   want to jump ahead to the [Local Setup](local.html) recipe then
-   coming back here when you're done.
- * After the vagrant box is created and docker images are downloaded,
-   the [fabric8 console](../console.html) should appear at
-   [http://172.28.128.80:8080/api/v1/proxy/namespaces/default/services/fabric8/](http://172.28.128.80:8080/api/v1/proxy/namespaces/default/services/fabric8/)
- * If you are prompted to enter a login and password then use: `admin` and `admin`
- * You should now be in the main fabric8 console! That was easy eh! :)
- * To create new Apps select the `Team Dashboard` which is usually called `default` but will be named whatever the default namespace was in your Kubernetes cluster
+ * 你现在应该有一个在网络地址 `172.28.128.80` 或  `vagrant.k8s` 上运行的 Vagrant 镜像
+   
+ * 下载 Docker 镜像可能会花一些时间，你也许想先跳到[本地安装](local.html)环节，完成后再回到这里
+ * 在 Vagrant Box 创建及 Docker 镜像下载后，[fabric8 控制台](../console.html)应该出现在  [http://172.28.128.80:8080/api/v1/proxy/namespaces/default/services/fabric8/](http://172.28.128.80:8080/api/v1/proxy/namespaces/default/services/fabric8/)
+ * 如果提示你输入一个登录用户和登录密码，使用 `admin` 和 `admin`
+ * 你现在应该在 fabric8 主控制台！ 多容易！ :)
+ * 创建新的应用时，选择`团队仪表盘`，它通常被称为`默认`，但也可能是你的 Kubernetes 集群中的默认命名空间
 
- ### Installing other applications
+ ### 安装其他应用程序
 
-When you are in the `Runtime` perspective of a Team or Namespace in the
- [fabric8 console](http://fabric8.io/guide/console.html) click on the
- `Run...` button.
+当你在 [fabric8 控制台](http://fabric8.io/guide/console.html)的团队或命名空间的`运行时`视图中，点击`运行...`按钮。
 
- This will list all of the installed [OpenShift Templates](http://docs.openshift.org/latest/dev_guide/templates.html)
- on your installation.
+ 这会列出所有已安装的 [OpenShift 模板](http://docs.openshift.org/latest/dev_guide/templates.html)
 
- * To Run any of the installed templates just click the `Run` button
-   (the green play button).
- * To install other applications via the command line you can use the `gofabric8` binary which is inside the Vagrant image. e.g. to install the full [Fabric8 Microservices Platform Management support](../management.html) then try this command instead:
+ * 要运行任何已安装的模板，只需点击`运行`按钮（绿色播放按钮）
+ * 要通过命令行安装其他应用程序，你可以使用 Vagrant 镜像中的 `gofabric8` 程序。比如安装完整的 [Fabric8 微服务平台管理支持](../management.html)时使用以下命令：
 
  ```
  gofabric8 deploy -y --domain=vagrant.f8 --app=management
  ```
 
- * To install any new
-   [OpenShift Templates](http://docs.openshift.org/latest/dev_guide/templates.html)
-   or other Kubernetes resources just drag and drop the JSON file onto
-  the `Run...` page!
- * You can download the
-   [fabric8 templates 2.2.101 distribution](http://repo1.maven.org/maven2/io/fabric8/devops/distro/distro/2.2.101/distro-2.2.101-templates.zip)
-   unzip and drag the JSON files you want to install onto the
-   [fabric8 console](http://fabric8.io/guide/console.html) and they
-   should appear on the `Run...` page
- * You can install or upgrade application using the [helm command line tool](http://fabric8.io/guide/helm.html)
- * You can also install other OpenShift Templates or Kubernetes
-   resources via the **oc** command line tool:
+ * 安装新的[OpenShift 模板](http://docs.openshift.org/latest/dev_guide/templates.html)或者其他 Kubernetes 资源只需拖拽 JSON 文件到 `运行...` 页面！
+ * 你可以下载
+   [fabric8 模板 2.2.101 发行版](http://repo1.maven.org/maven2/io/fabric8/devops/distro/distro/2.2.101/distro-2.2.101-templates.zip)，
+   解压并拖拽你想要的 JSON 文件来安装到
+   [fabric8 控制台](http://fabric8.io/guide/console.html)，它们应该出现在 `运行...` 页面
+ * 你可以使用[ helm 命令行工具](http://fabric8.io/guide/helm.html)安装或升级应用程序
+ * 你也可以通过 **oc** 命令行工具来安装其他 OpenShift 模板 或 Kubernetes 资源：
  ```
      kubectl create -f jsonOr YamlFileOrUrl
  ```
-  * Typically the default username/password for various applications is `admin/admin` or `gogsadmin/RedHat$1`.  Try these especially for  secrets to get the pipeline to work with GOGS.
+  * 一般来说，各种应用程序的默认用户名／密码是 `admin/admin` 或 `gogsadmin/RedHat$1`。 在流水线和 GOGS 一起工作需要输入凭证时可尝试这些。
 
- ### Setting up your local machine
+ ### 设定你的本地机器
 
- In order to communicate with the Vagrant VM from you localhost it is
- recommended to install the kubectl client
- tool. This is explained in an extra [document](local.html).
+ 为了从你的本地主机和 Vagrant 虚拟机一起通信，推荐安装 kubectl 客户端工具。 这在额外的[文档](local.html)中有解释。
 
- This is also useful using the
- [fabric8 maven tooling](../mavenPlugin.html) or reusing the docker
- daemon inside vagrant; so that all images built are accessible inside
- the OpenShift environment.
+ 这对使用 [fabric8 Maven 工具](../mavenPlugin.html)或重用 Vagrant 中的 Docker Daemon 也有帮助；以使所有构建的镜像在 OpenShift 环境里面都可以被访问到。
 
- Alternatively you can log into the Vagrant VM also via `vagrant
- ssh`. The kubectl tool is installed in the VM too.
+ 要不然你也可以通过 `vagrant ssh` 登陆到 Vagrant 虚拟机。 虚拟机中也安装了 kubectl 工具。
 
- ### Trying a fresh image
+ ### 刷新镜像
 
- Note: in case you already ran the above and want to update to the
- latest vagrant image, Kubernetes and Fabric8 release you need to
- destroy and recreate the vagrant image.  You can do that using:
+ 注意: 如果你已经运行了上面的镜像并想更新到最新的 Vagrant 和 Kubernetes 及 Fabric8 镜像发布版本，你需要销毁和重新创建 Vagrant 镜像。你可以使用以下方法：
 
  ```sh
  vagrant destroy -f
@@ -119,6 +91,6 @@ When you are in the `Runtime` perspective of a Team or Namespace in the
  vagrant up
  ```
 
- ### Troubleshooting
+ ### 故障诊断
 
- Check out the [troubleshooting guide](troubleshooting.html) for more help.
+ 查看[故障诊断指南](troubleshooting.html)获得更多的帮助。
