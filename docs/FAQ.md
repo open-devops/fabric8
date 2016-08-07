@@ -1,8 +1,8 @@
-### FAQ
+### 问题集
 
-The FAQ is split into the following sections
+问题集分为以下章节
 
-* [General Questions](faqGeneral.html)
-* [JBoss Fuse Questions](faqFuse.html)
-* [Kubernetes Questions](faqKubernetes.html)
-* [OpenShift Questions](https://help.openshift.com/hc/en-us/categories/200177370-Frequently-Asked-Questions)
+* [一般性问题](faqGeneral.html)
+* [JBoss Fuse 问题](faqFuse.html)
+* [Kubernetes 问题](faqKubernetes.html)
+* [OpenShift 问题](https://help.openshift.com/hc/en-us/categories/200177370-Frequently-Asked-Questions)

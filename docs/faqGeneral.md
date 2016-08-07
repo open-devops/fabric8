@@ -1,124 +1,116 @@
-### General Questions
+### 一般性问题
 
-#### What is the license?
+#### 许可证采用了那种？
 
-fabric8 uses the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.txt).
+fabric8 使用 [Apache 2.0 许可证](http://www.apache.org/licenses/LICENSE-2.0.txt)。
 
-#### What is it?
+#### 什么是 Fabric8？
 
-Fabric8 is an integrated open source [DevOps](fabric8DevOps.html) and [Integration Platform](ipaas.html) which works out of the box on any [Kubernetes](http://kubernetes.io/) or [OpenShift](http://www.openshift.org/) environment and provides [Continuous Delivery](cdelivery.html), [Management](management.html), [ChatOps](chat.html) and a [Chaos Monkey](chaosMonkey.html).
+Fabric8 是个集成开源的 [DevOps](fabric8DevOps.html) 和 [集成平台](ipaas.html)，它可以直接工作在任何 [Kubernetes](http://kubernetes.io/) 或 [OpenShift](http://www.openshift.org/) 环境中，它提供了[持续交付](cdelivery.html), [管理门户](management.html)，[聊天运维](chat.html) 以及 [Chaos Monkey](chaosMonkey.html).
 
+#### Fabric8 能做什么？
 
+Fabric8 （发音为 _fabricate_） 给你开箱即用的服务来辅助你构建 Linux 容器（Docker/Rocket）环境中的微服务，单块应用或者任何应用程序，它构建在 [Kubernetes](http://kubernetes.io/) 之上。
 
-#### What does fabric8 do?
+#### Fabric8 在 OpenShift 之上提供了什么增值服务？
 
-Fabric8 (pronounced _fabricate_) gives you out of the box services that assist you when building Microservices, monoliths or any application in a linux container (Docker/Rocket) environment and is built on top of [Kubernetes](http://kubernetes.io/).
+* [Kubernetes](http://kubernetes.io) 提供了一个基于 [Docker](http://docker.io/) 的 _容器即服务_ （编排 Docker 容器）
+* [OpenShift V3](https://github.com/openshift/origin) 扩展了 Kubernetes 来支持完整的*平台即服务*
+  * 在 Git 仓库托管源代码
+  * 执行构建和托管私有 Docker 镜像
+  * 支持 Git Push 方式来启动新的构建
+* Fabric8 致力于:
+  * 提供令人满意的基于 [hawtio](http://hawt.io/) 的 [Kubernetes 控制台](console.html)， 你可以浏览所有的 kubernetes 资源，理解发生了什么事情。既可以看到整体情况，又可以聚焦进个别容器，提供日志和各项指标的链接。
+  * 成为一个**集成平台即服务**和 **Java 应用平台即服务**
+  * 增加额外的服务，工具与快速入门来使 Kubernetes 平台为 Java 生态系统提供更丰富和更强大的功能：
+    * [Fabric8 应用](fabric8Apps.html) 提供可复用的[日志](logging.html), [指标](metrics.html)，并可以更加容易地使用集成与消息服务
+    * 提供深度支持并且功能丰富的[工具](http://fabric8.io/guide/tools.html)来使在 Kubernetes/OpenShift 上开发 Java 应用程序更加容易。比如[Maven Plugin](http://fabric8.io/guide/mavenPlugin.html) 和 [Forge Addons](http://fabric8.io/guide/forge.html)。
+    * 提供 [Java 类库](javaLibraries.html) 连同 [kubernetes & jolokia](https://github.com/fabric8io/fabric8/tree/master/components/kubernetes-jolokia) 一起和 [kubernetes](https://github.com/fabric8io/fabric8/tree/master/components/kubernetes-api) 工作，使得开发基于 Java 的与 Kubernetes 融洽工作的工具和服务更加容易
+    * [使用 Arquillian 测试](testing.html)帮助你进行[应用](apps.html)的集成测试
+    * 通过很多加工使 JBoss 中间件成为可复用构件，以使它们在通用控制台和平台上很容易地被消费
 
-#### What value does fabric8 add over OpenShift?
+#### Fabric8 是以 Java 为中心的吗？
 
-* [Kubernetes](http://kubernetes.io) provides a [Docker](http://docker.io/) based _Container As A Service_ (orchestrates docker containers)
-* [OpenShift V3](https://github.com/openshift/origin) extends Kubernetes to support a full _Platform As A Service_
-  * hosting source code in git repositories
-  * performing builds and hosting private docker images
-  * supporting the git-push style model of kicking off new builds
-* Fabric8 is focused on:
-  * providing a great [Kubernetes Console](console.html) based on [hawtio](http://hawt.io/) so you can view all of the kubernetes resources, understand whats going on and see the big picture or zoom inside inside individual containers and link to logs and metrics
-  * being an **Integration Platform As A Service** and a **Java Application Platform As A Service**
-  * adding extra services, tooling &amp; quickstarts to make the Kubernetes platform richer and more powerful for the Java ecosystem via:
-    * [Fabric8 Apps](fabric8Apps.html) to provide reusable [logging](logging.html), [metrics](metrics.html) and make it easier to consume integration and messaging services
-    * deep and rich [tooling](http://fabric8.io/guide/tools.html) to make it easy to develop Java applications on Kubernetes/OpenShift such as the [Maven Plugin](http://fabric8.io/guide/mavenPlugin.html) and [Forge Addons](http://fabric8.io/guide/forge.html)
-    * [Java libraries](javaLibraries.html) for working with [kubernetes](https://github.com/fabric8io/fabric8/tree/master/components/kubernetes-api) along with [kubernetes and jolokia](https://github.com/fabric8io/fabric8/tree/master/components/kubernetes-jolokia) so its easier to develop Java based tools and services which work well with Kubernetes
-    * [Testing with Arquillian](testing.html) helps you perform integration tests of your [apps](apps.html)
-    * making JBoss Middleware reusable appliances with lots of tooling so they are easy to consume in a universal console and platform
+简短回答为：不是 ;).
 
-#### Is Fabric8 Java centric?
+* [Fabric8 管理功能](management.html) 能和任何 [Kubernetes](http://kubernetes.io/) 上的 Docker 镜像一起工作  - 所以它是完全与语言，框架和运行时无关的。 [控制台](console.html) 为包含了 [Jolokia](http://jolokia.org/) 的 Java Docker 容器增加了额外的自省和可视化，但是我们希望为其他语言增加更多的深度自省工具。当然你总是可以在 Kubernetes 上直接使用任何语言，框架或者运行时特定的诊断或可视化工具
+* [微服务平台](fabric8DevOps.html)致力于与使用任何构建机制在 [Kubernetes](http://kubernetes.io/) 上运行 Docker 镜像的任何项目一起工作，所以支持使用任何构建工具的任何语言，框架和运行时。 不管是使用 OpenShift 的[源代码到镜像构建机制](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/builds_and_image_streams.html#source-build)，还是使用了 [Jenkins 流水线](https://github.com/jenkinsci/workflow-plugin)的我们首选的[持续交付](cdelivery.html)
+* [Fabric8 iPaaS（集成平台）](ipaas.html)的集成流程倾向于使用 [Apache Camel](http://camel.apache.org/) 实现，而它运行在 Java 虚拟机中，从这个角度来说，是更加以 Java 为中心的。但是 [Apache Camel](http://camel.apache.org/) 集成的服务可以使用任何技术，语言，运行时，本地部署或者 SaaS
+* [Fabric8 API 管理功能](apiManagement.html)可以与任何语言或运行时实现的 API 一起工作，虽然现在只支持基于 HTTP 的 API
 
-The short answer is no ;).
+说了所有这些，[Fabric8 iPaaS](ipaas.html) 致力于优化 Fabric8 以使 Java 的用户拥有与 Docker，Kubernetes，OpenShift 及 Fabric8 一起工作的优化体验， 但是我们也希望持续改进工具链，管理门户和可视化为其他语言和运行时服务
 
-* [Fabric8 Management](management.html) works with any Docker images on [Kubernetes](http://kubernetes.io/) - so its completely language, framework and runtime agnostic. The [console](console.html) has added extra introspection and visualisation for Java docker containers which contain a [Jolokia](http://jolokia.org/) but we hope to add more deep introspection tools for other languages. Certainly you can always use any language, framework or runtime specific diagnostic or visualiation tools on Kubernetes directly
-* [Microservices Platform](fabric8DevOps.html) focusses on working with any project with any build mechanism running Docker images on [Kubernetes](http://kubernetes.io/). So any language, framework and runtime is supported with any build tooling. Whether thats using OpenShift's [Source to image build mechanism](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/builds_and_image_streams.html#source-build), or our preferred [Continuous Delivery](cdelivery.html) using [Jenkins Workflow](https://github.com/jenkinsci/workflow-plugin). 
-* [Fabric8 iPaaS (Integration Platform](ipaas.html) is more Java centric in the sense that integration flows tend to be implemented using [Apache Camel](http://camel.apache.org/) which runs inside a Java virtual machine (JVM) but the services that Camel integrates with can be any technology, language, runtime, on premise or SaaS etc.
-* [Fabric8 API Management](apiManagement.html) works with any API implemented in any language or runtime; currently only HTTP based APIs are supported though.
+#### Jenkins 流水线是以 Java 为中心的吗？
 
-Having said all that; with the  [Fabric8 iPaaS)](ipaas.html) focus, we have optimised Fabric8 so that folks who do use Java have an optimised experience of working with Docker, Kubernetes, OpenShift and Fabric8. Though we hope to continue to improve tooling, management and visualisation for other languages and runtimes too.
+我们[持续交付](cdelivery.html)的首选工具为基于 [Jenkins](https://jenkins.io/) 的 [Jenkins 流水线插件](https://github.com/jenkinsci/workflow-plugin)。
 
-#### Is Jenkins Workflow Java centric?
+Jenkins 流水线使用 [Groovy 编程语言](http://groovy-lang.org/)为编排长时间运行的构建任务（比如构建，测试，审批，提升与部署等步骤）提供了领域特定语言。 
 
-Our preferred tool for [Continuous Delivery](cdelivery.html) is to use the [Jenkins Workflow plugin](https://github.com/jenkinsci/workflow-plugin) with [Jenkins](https://jenkins.io/).
+使用 Jenkins流水线的首选方式是，为你的所有构建和测试工具重用 Docker 镜像，以使**Jenkinsfile**文件的大部分构建细节趋向于 Docker 镜像中的命令运行。因此你的持续交付流水线的定义一般是一个命令列表，命令可以是你使用的任何工具（Maven, Grunt, Gulp, Make, bash, python, ruby 等等），它们是完全地和语言，工具，框架无关的。
 
-Jenkins Workflow provides a domain specific language for orchestrating long running build tasks such as building, testing, approving, promoting and deploying steps using the [Groovy programming language](http://groovy-lang.org/).
+#### 微服务平台能够和我的持续集成服务器一起工作吗？
 
-The preferred approach to using Jenkins Workflow is to reuse docker images for all your build and testing tools; so that most of the details in your **Jenkinsfile** tends to be running commands inside docker images. So your CD pipeline definition is usually a list of commands using whatever tools you use (Maven, Grunt, Gulp, Make, bash, python, ruby, whatever) which is completely language, tool and framework agnostic.
+我们[持续交付](cdelivery.html)的首选工具为基于 [Jenkins](https://jenkins.io/) 的 [Jenkins 流水线插件](https://github.com/jenkinsci/workflow-plugin)。
 
-#### Can Microservices Platform work with my CI server?
-
-Our preferred tool for [Continuous Delivery](cdelivery.html) is to use the [Jenkins Workflow plugin](https://github.com/jenkinsci/workflow-plugin) with [Jenkins](https://jenkins.io/).
-
-However this is for _orchestrating delivery pipelines_ which typically involves many tasks such as building, testing, approving, promoting and deploying. How each of those parts work is completely up to you.
+但是这个*编排交付流水线*一般包括很多任务，比如构建，测试，审批，提升与部署。这些组成构件的每一个如何工作是完全取决于你的。
  
-For example you can reuse your existing CI server (Jenkins, Bamboo, TeamCity or whatever) to build your code then use a Jenkins Workflow pipeline to move the build through environments, orchestrate system tests, soak tests, acceptance tests, approvals, promotions and so forth.
+ 比如你可以重用你的现有持续集成服务器（Jenkins, Bamboo, TeamCity 或者其他）来构建你的代码，然后使用 Jenkins 流水线来在环境间移动构建成果物，编排系统测试，侵泡测试，验收测试，审批，提升及部署等。
 
-Our preferred approach is to use Jenkins Workflow pipelines as the core orchestration layer when trying to implement  [Continuous Delivery, Continous Deployment or Continous Improvement](cdelivery.html) then for that pipeline to trigger whatever is required to complete the pipeline; whether its one or more builds in an existing CI server, triggering OpenShift [Source to Image builds](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/builds_and_image_streams.html#source-build) or other existing build or test services then orchestrating those along with approval and promotion through Jenkins workflow. It also then means its easier to get a holistic view of your CD pipelines across all projects; irrespective of how each build or test works or what tools are used to build or test projects etc.
+当我们试图实现[持续交付，持续部署或者持续改进](cdelivery.html)时，我们的首选方式为使用 Jenkins 流水线作为核心编排层， 然后在这个流水线上触发任何所需处理来完成流水线任务，不管它是现有持续集成服务器的一个或者多个构建任务，还是触发 OpenShift [源代码到镜像构建](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/builds_and_image_streams.html#source-build)，或者其他现有构建任务或测试服务，然后通过 Jenkins 流水线，与审批和提升一起编排这些处理。这也意味着可以更加容易地获得你的跨越所有项目的持续交付流水线的holistic视图，不仅包括每个构建或测试如何工作，还包括构建或测试项目中使用的工具信息。
+
+#### 我在哪里可以找到源代码？
+
+Fabric8 是由 Java 和 Go 语言开发的并打包成 Docker 容器的项目集合构成。这些项目／容器的 Git 仓库的详细信息可以在[项目文档页面](projects.md)找到。 
+
+#### 运行 Fabric8 需要 Docker 和 Kubernetes吗？
+
+Fabric8 被设计为在 Kubernetes 和 Docker 之上工作最佳，这意味着 Fabric8 会在提供 Kubernetes 平台的任何环境中工作良好，比如 RHEL Atomic, OpenShift, Google Compute Engine, Azure 等等。
+
+#### 支持 Windows 吗？
+
+我们建议在生产环境使用基于 Linux 的操作系统，尤其是你想要使用 [Docker](http://docker.io/) 和 [Kubernetes](http://kubernetes.io) 或 [OpenShift Origin V3](https://github.com/openshift/origin) 的全面管理平台。 
+
+Windows 现在只是部分支持。Windows 用户也许可以考虑使用 [Docker](http://docker.io/)，这样所有 Fabric8 技术棧运行在一个 Linux 虚拟机的轻量级容器中。
+
+#### 提供了哪些 Maven 插件目标？
  
-#### Where do I look for the source code?
+浏览[ Maven 插件目标列表](http://fabric8.io/guide/mavenPlugin.html) 
 
-Fabric8 is comprised of a collection of projects written in Java and Golang and packaged up as Docker containers. The git repos for each of these projects/containers can be found in detail in the [project documentation pages](projects.md) 
+#### 支持 Java 的那些版本？
 
-#### Are Docker and Kubernetes required to run Fabric8?
+Fabric8 的 Java 源代码使用 Java 8，但是 Docker 镜像可以使用它所希望的任何语言，运行时或者框架的任何版本。
 
-Fabric8 is designed to work best on top of Kubernetes and Docker; it means fabric8 will work very well in any environment providing the Kubernetes platform such as RHEL Atomic, OpenShift, Google Compute Engine, Azure etc.
+#### Fabric8 使用 ZooKeeper 运行时注册服务吗？
 
-#### Is Windows supported
+不，再也不需要了。 Fabric8 1.x 使用 ZooKeeper 在应用程序之间分享运行时信息并发现服务。Kubernetes 在内部使用 [etcd](https://github.com/coreos/etcd) 达到同样的目的并支持服务绑定，所以 Fabric8 v2 再也不需要 ZooKeeper 注册服务来进行容器和服务的通用配置。
 
-We recommend using a linux based system for production; preferably if you want a fully managed platform use [Docker](http://docker.io/) and [Kubernetes](http://kubernetes.io) or [OpenShift Origin V3](https://github.com/openshift/origin).
+但是一些服务还是会需要主从选举和分区功能（比如运行 ActiveMQ 集群)，这时需要 [etcd](https://github.com/coreos/etcd) 或者 [Apache ZooKeeper](http://zookeeper.apache.org/)。 如果 Kubernetes 环境条件允许，那么 Fabric8 可以重用底层的
+  etcd 集群，否则需要 etcd 或者 ZK 集群来为像 ActiveMQ 集群之类的东西服务。
 
-Windows is currently only partially supported. Windows users may consider using [Docker](http://docker.io/) so that all the fabric8 technologies run inside a linux VM in lightweight containers.
+#### Fabric8 还在使用 Profiles 配置应用程序部署吗？
 
-#### What maven plugin goals are available?
- 
-See the [list of maven plugin goals](http://fabric8.io/guide/mavenPlugin.html) 
+不，再也不需要了。从 Fabric8 V2 开始，Fabric8使用 [应用程序](apps.html) JSON 文件（比如 OpenShift 3 提议的 Kubernetes 扩展）来配置受管应用程序的部署。更详细的配置（比如属性或者 YAML 文件）可以添加到应用程序的 Docker 镜像的文件系统中。
 
-#### What Java versions are supported?
+#### 还需要使用 Git 仓库来存储应用程序的配置信息吗？
 
-fabric8's Java code uses Java 8 but any docker image can use any version of any language, runtime or framework it wishes
+和 Fabric8 v1 不同，应用程序的配置信息不再被保存在 Git 仓库中。由于 Fabric8 v2 不再使用 Profiles （但是替代地使用应用程序模版），再也不需要 Git 仓库了。你可以只是将应用程序的配置（应用程序文件）保存在 Maven 项目中并使用 [Fabric8 Maven  插件](mavenPlugin.html#running) 来在 Kubernetes 中启动应用程序，而不需要在任何中央仓库（比如 Git）保存配置信息。
 
-#### Does Fabric8 use ZooKeeper runtime registry?
+但是为了更加容易的配置管理，推荐在 Git 中保存应用程序文件。这也是为什么 Fabric8 为本地部署的 Git 仓库托管默认集成了 [Gogs](http://gogs.io/) 的原因。 这来自于 [Fabric8 DevOps](fabric8DevOps.md) 特性。
 
-No, not anymore. Fabric8 1.x used ZooKeeper to share the runtime information between applications and to discover services. Kubernetes comes with the [etcd](https://github.com/coreos/etcd) internally which serves much of the same purpose and has support for the services binding, so Fabric8 v2 doesn't need ZooKeeper registry anymore for general purpose provisioning of containers and services.
+#### 是否需要 Fabric8 Server 来配置应用程序？
 
-However certain services will still require master slave election and partitioning functionality (such as running clusters of ActiveMQ); where either [etcd](https://github.com/coreos/etcd) or [Apache ZooKeeper](http://zookeeper.apache.org/) is required. If a Kubernetes environment allows it then fabric8 could reuse the underlying etcd cluster; otherwise an etcd or ZK clusters is required for things like ActiveMQ clustering.
+不，再也不需要了。从 Fabric8 v2 开始，Kubernetes 负责为受管应用程序提供运行时注册服务。这意味着你不再需要启动任何专属的 Fabric8 守护进程。像 
+[Fabric8 Maven 插件](mavenPlugin.html)
+或者 [Hawt.io](http://hawt.io) 之类的工具可以直接连接 Kubernetes 来部署管理应用程序。
 
-#### Does Fabric8 still use profiles to configure application deployment?
+#### 如果不再有 Fabric8 Server，我怎么使用 Fabric8 Shell？
 
-No, not anymore. Starting from v2 Fabric8 uses [app](apps.html) JSON files (i.e. Kubernetes extension proposed by OpenShift 3)
-to configure deployment of the managed application. More detailed configuration (like properties or YAML files) can be 
-added to the file system of the application's Docker image.
+对于 Fabric8 v2 开发活动，推荐工具为 [JBoss Forge](http://forge.jboss.org) 和 [Fabric8 add-on](forge.html)。
 
-#### Is Git repository still used to store the applications' configuration?
+为了应用程序服务开通的目的（比如创建容器／服务，或者变更副本数量），你可以使用 [Fabric8 add-on](forge.html) 或者使用 OpenShift/Kubernetes 的 Shell。
 
-Applications' configuration isn't stored in Git repository as it used to be in Fabric8 v1. As Fabric8 v2 doesn't use 
-profiles (but app templates instead), the Git repository is not needed anymore. You can just store application's configuration (app file)
-in the Maven project and use the [Fabric8 Maven plugin to start](mavenPlugin.html#running) the application in Kubernetes
-without keeping the configuration in any central repository (like Git).
+Kubernetes 被包含在 [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) 和 OpenShift V3 之中，是用来配置任何类型容器的标准 Shell。
 
-However keeping app files in Git for easier configuration management is recommended. That's why fabric8 has integrated with [Gogs](http://gogs.io/) for on premise git repository hosting.  This comes from the [fabric8 DevOps](fabric8DevOps.md) features.
+#### 废弃
 
-#### Is Fabric8 server required to provision applications?
-
-No, not anymore. Starting from Fabric8 v2 Kubernetes is responsible for providing the runtime registry for the
-managed applications. It means that you don't have to start any dedicated Fabric8 deamon. Tools like 
-[Fabric8 Maven plugin](mavenPlugin.html)
-or [Hawt.io](http://hawt.io) can connect directly to the Kubernetes and deploy/manage it.
-
-#### If there is no Fabric8 server, how can I use Fabric8 shell?
-
-For the Fabric8 v2 development activities, the recommended tool is [JBoss Forge](http://forge.jboss.org) with the [Fabric8 add-on](forge.html).
-
-For provisioning purposes (like creating containers/services or changing the replica sizes) you can use the [Fabric8 add-on](forge.html) or use the shell from OpenShift/Kubernetes.
-
-Kubernetes will be included in [Red Hat Enterprise Linux](http://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) and OpenShift V3 and is the standard shell for provisioning any kind of the container.
-
-#### Deprecations
-
-FAB (Fuse Application Bundles) has been deprecated for the 1.2 release and removed from 2.x.
-
+FAB (Fuse Application Bundles) 在 1.2 版本中被废弃，从 2.x 版本被移除。
