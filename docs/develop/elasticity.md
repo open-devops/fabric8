@@ -1,20 +1,19 @@
 ## Elasticity and Resilience
 
-Your Microservices should be __highly available__ and resilient to failure. Ideally each Microservice should also be _elastic_ so that you can easily scale up or down the number of containers used for each Microservice. Some Microservices may only require one container; others may require many.
- 
- Many times when considering elasticity, you have to consider whether your app is stateless or stateful. Stateless apps should be trivial to scale up and down, however stateful apps require more care. For example, a stateful data store would need to shard and replicate its state across the members in the cluster and know how to rebalance itself during scaling events.
-  
+你的微服务应该**高可用**，并且在失效时具备**韧性**。理想情况下，每个微服务都应该具备**弹性**，以便容易地对每个微服务的使用容器数量进行扩张或缩小。一些微服务也许只需要一个容器，而其他的微服务则需要很多。
 
-Fabric8 solves these elasticity and resilience problems by using Kubernetes [Replica Sets](../replicationControllers.html) (which used to be called Replication Controllers). Just like most configurations for Kubernetes, a Replica Set is a way to reconcile a desired state: you tell Kubernetes what state the system should be and Kubernetes figures out how to make it so. A Replica Set controls the number of `replicas` or exact copies of the app that should be running at any time.    
+很多时候在考虑弹性时，你不得不考虑你的应用是无状态还是有状态的。无状态应用比较容易缩放，但是有状态应用需要更多的照顾。比如，一个有状态的数据存储将会需要分片和向集群成员复制它的状态，并且知道在缩放事件过程中如何重新负载平衡。 
 
-A _Replia Set_ defines a template for running on or more [pods](../pods.html) which then can be scaled either by an operator or automatically by Kubernetes based on some system high watermarks.
+Fabric8 通过使用 Kubernetes [Replica Sets（副本集）](../replicationControllers.html)（曾经被称为副本控制器） 解决了这些弹性和韧性问题。就像大多数 Kubernetes 的配置一样，一个副本集是调停期待状态的一种方式：你告诉 Kubernetes 系统应该是什么状态，Kubernetes 就会断定如何达到这种状态。一个副本集控制着在任何时刻应该在运行的副本数量或应用拷贝。   
 
-The Replica Set uses a _selector_ to keep watching the available pods matching the selectors labels. If there are not enough pods running it will spin up more; or if there are too many pods running it will terminate the extra pods.
+一个副本集定义了为了运行一个或多个 [Pods](../pods.html) 的模板，然后就可以基于一些系统高水位信息，由运维人员或者 Kubernetes 自动完成系统扩张或缩小。
 
-### Operator-based scaling
+副本集使用一个 _selector（选择器）_ 来不断监视满足选择器标签的可用 Pods。如果缺少足够的运行状态的 Pods，它会启动更多的 Pods；如果有太多的运行状态的 Pods，它会终止多余的 Pods。
 
-To scale your Replica Set you just need to specify how many `replicas` you wish by default in your Replica Set YAML file. The default value of 1 should ensure that there is always a pod running. If a pod terminates (or the host running the pod terminates) then Kubernetes will automatically spin up another pod for you.
+### 基于运维人员的缩放
 
-### Autoscaling
+为了缩放你的副本集，你只需要在你的副本集 YAML 文件中，指定你希望的默认`副本`数量。默认数量为 1 确保了始终有一个运行中的 Pod。如果一个 Pod 终止了（或者运行着 Pod 的主机终止了），Kubernetes就会自动地为你启动另外一个 Pod。
 
-To autoscale you need to annotate your Replica Set with the metadata required, such as CPU limits or custom metrics so that Kubernetes knows when to scale up or down the number of pods. Then you can create a [HorizontalPodAutoscaler](http://kubernetes.io/docs/user-guide/horizontal-pod-autoscaling/) to let Kubernetes know certain pods/ReplicaSets should participate in autoscaling. 
+### 自动缩放
+
+为了自动缩放，你需要使用所需的元数据注释你的副本集，比如 CPU 限制，或自定义指标，以使 Kubernetes 知道什么时候扩张或者缩小 Pods 的数量。然后你就可以创建一个 [HorizontalPodAutoscaler（水平自动缩放器）](http://kubernetes.io/docs/user-guide/horizontal-pod-autoscaling/) 来使 Kubernetes 知道哪些 Pods/ReplicaSets 应该参与到自动缩放当中。
