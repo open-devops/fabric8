@@ -1,71 +1,71 @@
-## Create a microservice
+## 创建微服务
 
-The easiest way to configure the Pipeline for your project is via the [fabric8 developer console](../console.html).
+为项目配置流水线的最容易的方式为使用 [Fabric8 开发者控制台](../console.html)。
 
-When you open the fabric8 console you should see a screen like this:
+当打开 Fabric8 控制台时，你应该能够看到以下页面：
 
-![fabric8 developer console: Start page](../images/console-home.png)
+![Fabric8 开发者控制台: 开始页面](../images/console-home.png)
 
-A `Team` is a kubernetes namespace running your development tools (like Jenkins, Nexus, JBoss Forge) and is associated with a number of environments (Testing, Staging, Production etc).
+`Team（团队）` 是一个 Kubernetes 命名空间，用来运行你的开发工具（比如 Jenkins, Nexus, JBoss Forge），并和好些环境关联（测试，预发布，生产环境）。
 
-Click on the `Team Dashboard` which should take you to the Team Dashboard where you can create new apps or view your existing apps:
+点击 `Team Dashboard（团队仪表盘）` 可以把你带到团队仪表盘页面，在这里你能够创建新的应用或者浏览你的既存应用：
 
-![fabric8 developer console: Team Dashboard](../images/console-dashboard.png)
+![Fabric8 开发者控制台: 团队仪表盘](../images/console-dashboard.png)
 
-If you click the `Create Application` you get to the create wizard page:
+如果你点击 `Create Application（创建应用）`，你会进入创建应用向导页面：
 
-![fabric8 developer console: Create App](../images/create-project.png)
+![Fabric8 开发者控制台: 创建应用](../images/create-project.png)
 
-Then you get to pick what kind of project you wish to create and its name:
+然后你可以选择你希望创建的项目类型和项目名称：
 
-![fabric8 developer console: Select Project Type](../images/create-app.png)
+![Fabric8 开发者控制台: 选择项目类型](../images/create-app.png)
 
-Then choose your [CD Pipeline](cdelivery.html):
+然后选择你的[自动交付流水线](cdelivery.html)：
 
-![fabric8 developer console: Choose CD Pipeline](../images/console-pick-pipeline.png)
+![Fabric8 开发者控制台: Choose CD Pipeline](../images/console-pick-pipeline.png)
 
-If you choose `Copy pipeline to project` then the Jenkinsfile that defines the pipeline gets copied into your project's git repository so that you can easily edit it later on via a versioned source code change just like any other code change.
+如何你选择 `Copy pipeline to project（拷贝流水线到项目）`， 那么定义了流水线的 Jenkinsfile 会被拷贝到你的项目的 Git 仓库中，这样你可以方便地像变更其他代码一样在版本管理系统中编辑它。
 
-Now you will be taken to the `App Dashboard` where you can see all the environments and active pipelines along with recent commits on a single pane of glass. This is how it looks once the Canary release, Testing and Staging is complete; waiting for Promotion to Production
+现在你会进入到 `App Dashboard（应用仪表盘）` 页面，在这里你可以统一看到所有的环境和活动流水线，以及最近提交的构建状况。下图展现了在金丝雀发布，测试和预发布完成后，等待生产环境上线的审批状态。
 
-![fabric8 developer console: App Dashboard](../images/console-app-dashboard.png)
+![Fabric8 开发者控制台: 应用仪表盘](../images/console-app-dashboard.png)
 
-You can click on the `Proceed` button to promote to Production, or `Abort` to stop the pipeline.
+你可以点击 `Proceed（继续执行）` 按钮来将发布提升到生产环境，或者 `Abort（放弃）` 按钮来停止流水线。
 
-You can easily switch between all your development tools (Gogs, Jenkins, Nexus etc) using the tool drop down menu at the top right of the screen:
+你可以通过页面右上角的工具下拉菜单，很容易地在所有你的开发工具（Gogs, Jenkins, Nexus 等） 间切换。 
 
-![Clicking on the tools drop down to see development apps](../images/console-tools.png)
+![通过点击工具下拉菜单来查看开发的应用](../images/console-tools.png)
 
-### Runtime tabs
+### 运行时标签页
 
-The `Team` page has a `Runtime` tab that lets you browse the runtime of your development environment. Or from the home page you can click on an environment page to view its runtime.
+`Team（团队）` 页面有一个 `Runtime（运行时）` 标签页，在这里你可以浏览你的开发环境的运行时状态。你也可以在主页点击环境页面来浏览它的运行时。
 
-The `Runtime` pages have a number of tabs that let you work with the various Kubernetes resources. We'll highlight the main ones you'll need to use:
+`Runtime（运行时）` 页面有很多标签页来让你和 Kubernetes 的各种资源一起工作。我们重点介绍几个你会需要使用的标签页：
 
-#### Replicas
+#### Replicas（副本）
 
-The main tab to get a feel for what's running in your system is the **Replicas** tab which shows all the [replication controllers](replicationControllers.html) or ReplicaSets on Kubernetes.
+**Replicas（副本）** 标签页可以帮助你了解你的系统正在运行什么服务，它会显示 Kubernetes 上的所有 [Replication Controllers（副本控制器）](replicationControllers.html) 或者 ReplicaSets （副本集）。
 
-To scale up or down a controller to run more or less [pods](pods.html) (containers) just increase or decrease the **Desired Replicas** value and hit **Save** and hey presto pods are created or destroyed.
+为了扩大或缩小控制器规模来运行更多或更少的 [Pods](pods.html)（容器），只需要增加或减少 **Desired Replicas（副本期待值）** 设定值并点击保存按钮，然后 Pods 就会像是变戏法一样被创建出来，或者被销毁掉。
 
-![controllers tab screenshot](../images/controllers.png)
+![控制器标签页截屏](../images/controllers.png)
 
-#### Overview
+#### Overview（概览）
 
-The **Overview** tab gives you a feel for how all the various [services](services.html) and  [replication controllers](replicationControllers.html) interact:
+概览标签页可以帮助你了解所有的各类[服务](services.html)和[副本控制器](replicationControllers.html)之间的交互：
 
-![overview tab screenshot](../images/overview.png)
+![概览标签页截屏](../images/overview.png)
 
 
-### Demo 
+### 演示 
 
-Here is a [video demonstrating how to create a microservice and then deploy and edit it via Continuous Delivery](https://vimeo.com/170830750)
+这里有一个[描述如何创建微服务并通过持续交付流水线来部署和编辑微服务的视频](https://vimeo.com/170830750)。
 
 <div class="row">
   <p class="text-center">
       <iframe src="https://player.vimeo.com/video/170830750" width="1000" height="562" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   </p>
   <p class="text-center">
-    <a href="https://medium.com/fabric8-io/create-and-explore-continuous-delivery-pipelines-with-fabric8-and-jenkins-on-openshift-661aa82cb45a">more details in a blog post</a>
+    <a href="https://medium.com/fabric8-io/create-and-explore-continuous-delivery-pipelines-with-fabric8-and-jenkins-on-openshift-661aa82cb45a">更详细的信息请参见博客投稿</a>
   </p>
 </div>
