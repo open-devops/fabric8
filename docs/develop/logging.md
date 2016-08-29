@@ -1,10 +1,10 @@
-## Logging
+## 日志
 
-Logging is a key part of being able to understand Microservices and diagnose issues. Consolidating log statements and events and being able to query and visualise them is an extremely useful tool.
+日志是了解微服务运行状况及诊断问题的重要组成部分。整合日志输出和事件并能够查询和可视化日志是非常有用的工具。
 
-When running the Fabric8 Microservices Platform we recommend running the [Logging Microservices](../logging.html) which runs [Elasticsearch](http://www.elasticsearch.com/products/elasticsearch/) for the back end storage and [Kibana](http://www.elasticsearch.com/products/kibana/) as the front end and fluentd as the collector.
+当运行 Fabric8 微服务平台时，我们推荐运行[日志微服务](../logging.html)，它使用 [Elasticsearch](http://www.elasticsearch.com/products/elasticsearch/) 作为后端存储，[Kibana](http://www.elasticsearch.com/products/kibana/) 作为前端展现以及 fluentd 作为日志收集器。
 
-As a Microservice developer, you get _logging as a service_ for free with the [Logging Microservices](../logging.html), though its recommended that you:
+作为一个微服务开发者，你可以使用[日志微服务](../logging.html)免费获得*日志即服务*，但建议你：
 
-* write logs to standard output rather than to files on disk
-* ideally use JSON output so thats its easy to automically parse it
+* 将日志写到标准输出而非磁盘文件
+* 理想状况下使用 JSON 输出以便容易地自动解析
