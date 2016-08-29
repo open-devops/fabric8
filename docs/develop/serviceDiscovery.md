@@ -1,54 +1,50 @@
-## Service Discovery
+## 服务发现
 
-[Services](../services.html) are implemented by one or more [pods](../pods.html) for [Elasticity and Resilience](highAvailability.html). In the cloud [pods](../pods.html) can come and go when there are hardware failures or when pods get rescheduled onto different nodes to improve resource utilisation.
+为了弹性与韧性，[服务](../services.html)由一个或多个 [Pods](../pods.html) 实现。在云环境中，[Pods](../pods.html) 能够在硬件失效或者为了提高资源利用率将 Pods 重新规划到其他节点时来去自如。
  
-To use a service you need to dynamically discover the pods implementing the service so that you can invoke it. This is called _service discovery_.
+为了使用一个服务，你需要动态发现实现了相应服务的 Pods，以使你可以调用它。这叫做*服务发现*.
 
-### Kubernetes Service Discovery
+### Kubernetes 服务发现
 
-The default way to discover the pods for a [kubernetes service](../services.html) is via DNS names. 
+发现 [kubernetes 服务](../services.html) 的 Pods 信息的默认方式为通过 DNS 名字解析。
 
-#### Service discovery via DNS
+#### 通过 DNS 发现服务
 
-For a service named `foo-bar` you can just hard code the host name `foo-bar` in your application code.
+对于一个叫做 `foo-bar` 的服务，你可以只是在你的应用程序代码中硬编码主机名 `foo-bar`。
 
-e.g. to access a HTTP URL use `http://foo-bar/` or for HTTPS use  `https://foo-bar/` (assuming the service is using the port 80 or 443 respectively). 
+比如，使用 `http://foo-bar/` 或者 `https://foo-bar/` 来访问服务 URL（这里假定服务使用 80 或者 443 端口）
 
-If you use a non standard port number, say, 1234, then append that port number to your URL such as `http://foo-bar:1234/`.
+如果你使用了非标准端口号（比如 1234），你需要在你的 URL 里添加端口号，比如 `http://foo-bar:1234/`。
 
-Note that DNS works in kubernetes by resolving to the service named `foo-bar` in the namespace of your pods so you don't have to worry about configuring your application with environment specific configuration or worry about accidentally talking to the production service when in a testing environment!  You can then move your application (its docker image and kubernetes metadata) into any environment and your application works without any changes!
+需要提到的是，在 kubernetes 中 DNS 通过在你的 Pods 命名空间中解析服务名 `foo-bar` 来工作，这样你就不必担心使用环境特定配置来配置你的应用程序，也不必担心在测试环境中会不小心访问到生产环境的服务！你可以将你的应用程序（它的 Docker 镜像和  kubernetes 元数据）部署到任何环境，而你的应用程序不需要任何修改就可正常工作。
 
-#### Service discovery via environment variables
+#### 通过环境变量发现服务
 
-Kubernetes uses 2 environment variables to expose the fixed IP address and port that you can use to access the service.
+Kubernetes 使用两个环境变量来暴漏你可以用来访问服务的固定 IP 地址和端口。
 
-So for a service named `foo-bar` you can use these 2 environment variables to access the service:
+所以对于一个叫做 `foo-bar` 的服务，你可以使用以下两个环境变量来访问服务：
 
-* `FOO_BAR_SERVICE_HOST` is the host (IP) address of the service
-* `FOO_BAR_SERVICE_PORT` is the port of the service
+* `FOO_BAR_SERVICE_HOST` 为服务的主机 IP 地址
+* `FOO_BAR_SERVICE_PORT` 为服务的端口号
 
-e.g. you could access a web site or service via:
+比如你可以通过以下方式访问一个服务：
 
     http://${FOO_BAR_SERVICE_HOST}:${FOO_BAR_SERVICE_PORT}/
     
-The value of the host and port are fixed for the lifetime of the service; so you can just resolve the environment variables on startup and you're all set!
-    
-Under the covers Kubernetes will load balance over all the service endpoints for you.
-    
-Note a [pod](pod.html) can terminate at any time; so its recommended that any network code should retry requests if a socket fails; then kubernetes will failover to a pod for you.
+主机 IP 地址和端口号在服务的生命周期中是固定的，所以你只需要在应用启动时解析环境变量即可！
+
+Kubernetes 在幕后会为你负载均衡所有的服务端点。
+
+需要提到的是，一个 [Pod](pod.html) 有可能在任何时刻停止，所以建议任何网络访问代码应该在套接字失效时重新尝试请求，kubernetes 将会为你提供一个新的 Pod 来进行故障转移。
         
-### Using Ribbon
+### 使用 Ribbon
 
-If you are using Java to implement your Microservice then you can use Ribbon from NetflixOSS to perform process local load balancing over the available endpoints.
+如果你在使用 Java 实现你的微服务，那么你可以使用 NetflixOSS 的 Ribbon 来对可用的服务断点进行本地负载均衡。
 
-We recommend using Kubernetes Service Discovery via DNS (see above) by default because:
+我们推荐使用 Kubernetes DNS 服务发现作为默认选项是因为：
 
-* it works for services using any network protocols based on TCP and UDP
-* it works for any Microservice language implementation
-* apart from a String change, it typically has minimal impact on the code of your Microservice.
+* 它可以服务于使用基于 TCP 和 UDP 的任何网络协议的服务
+* 它可以服务于任意的微服务语言实现
+* 除了字符串变更，它一般对你的微服务代码只有最小限的影响
 
-However using Ribbon means that your Java code has an in memory model of the available endpoints you could invoke; which lets you plugin your own custom load balancing logic into your Microservice.
-
-
-
-
+但是使用 Ribbon 意味着你的 Java 代码拥有你可以调用的服务可用端点的内存模型，这可以使你能够向你的微服务中插入你自己定制的负载均衡逻辑。
